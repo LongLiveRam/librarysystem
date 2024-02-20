@@ -1,0 +1,63 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+header {
+  background-color: dimgray;
+  color: white;
+  padding: 20px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+nav a{
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.right > *{
+  margin-right: 20px;
+}
+
+.list-book {
+  display: flex;
+  justify-content: center;
+  padding: 50px;
+}
+
+.list-book form > div{
+  margin-top: 20px;
+}
+
+.list-book, form > input {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.book-items-container {
+  width: 80%;
+  border: black 1px solid;
+  display: flex;
+  margin: 0 auto;
+}
+
+.book-item {
+  max-width: 70%;
+  margin: 10px;
+}
+
+.book-item a {
+  display: inline-block;
+  text-decoration: none;
+  background-color: blanchedalmond;
+  border-radius: 5px;
+  color: black;
+  padding: 3px;
+  margin-top: 5px;
+}

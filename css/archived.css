@@ -1,0 +1,13 @@
+table,th,td {
+  border: 1px solid black;
+  text-align: center;
+}
+
+table thead th {
+  padding: 15px;
+  font-weight: bold;
+}
+
+table tbody td {
+  padding: 10px;
+}
