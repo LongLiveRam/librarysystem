@@ -1,7 +1,11 @@
 <?php 
   include('includes/autoloader.inc.php');
 
-
+  if(isset($_POST['relist-book'])) {
+    $ISBN = $_POST['ISBN'];
+    $books = new BooksController();
+    $books->relistBookRequest($ISBN);
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +18,6 @@
 <body>
   <main>
     <section class="archived-books-container">
-
       <table>
         <thead>
           <tr>
@@ -38,7 +41,12 @@
                     <td>'.$row['author'].'</td>
                     <td>'.$row['date_published'].'</td>
                     <td>'.$row['ISBN'].'</td>
-                    <td>Action</td>
+                    <td>      
+                      <form action="#" method="POST">
+                        <input type="text" value="'.$row['ISBN'].'" name="ISBN" hidden>
+                        <input type="submit" value="Relist" name="relist-book">
+                      </form>
+                  </td>
                   </tr>
                 ';
               }

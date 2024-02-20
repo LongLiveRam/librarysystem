@@ -1,13 +1,20 @@
 <?php 
   include('includes/autoloader.inc.php');
-  $ISBN = $_GET['ISBN'];
+  $markerISBN = $_GET['ISBN'];
   $books = new BooksController();
-  $data = $books->readSpecificBookRequest($ISBN);
+  $data = $books->readSpecificBookRequest($markerISBN);
   unset($books);
 
   if(isset($_POST['update-book'])) {
     $books = new BooksController();
-    $books->updateBookRequest($bookName, $bookAuthor, $datePublished, $ISBN);
+    $bookName = $_POST['bookName'];
+    $bookAuthor = $_POST['bookAuthor'];
+    $datePublished = $_POST['datePublished'];
+
+    $datePublished = date("Y-m-d", strtotime($datePublished)); // format date PHP
+
+    $ISBN = $_POST['ISBN'];
+    $books->updateBookRequest($bookName, $bookAuthor, $datePublished, $ISBN, $markerISBN);
     unset($books);
   }
 ?>
@@ -42,5 +49,6 @@
     </div>
     <input type="submit" value="Update Book" name="update-book">
   </form>
+  <a href="homepage.php">Back to Homepage</a>
 </body>
 </html>

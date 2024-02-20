@@ -19,6 +19,7 @@ class BooksController extends Books {
     $data = $this->readSpecificBook($ISBN);
     return $data;
   }
+
   function unlistedBooksRequest() {
     $data = $this->unlistedBooks();
     return $data;
@@ -33,16 +34,21 @@ class BooksController extends Books {
     }
   }
 
-  function updateBookRequest($bookName, $bookAuthor, $datePublished, $ISBN) {
-    $response = $this->updateBook($bookName, $bookAuthor, $datePublished, $ISBN);
+  function relistBookRequest($ISBN) {
+    $response = $this->relistBook($ISBN);
+    if($response == true) {
+      header('location: homepage.php?bookrelisted=success');
+    }else{
+      header('location: homepage.php?bookrelisted=failed');
+    }
   }
 
-  function updateStatusRequest($ISBN) {
-    $response = $this->unlistBook($ISBN);
-    if($response == true){
-      header('location: homepage.php?archived=sucess');
+  function updateBookRequest($bookName, $bookAuthor, $datePublished, $ISBN, $markerISBN) {
+    $response = $this->updateBook($bookName, $bookAuthor, $datePublished, $ISBN, $markerISBN);
+    if($response == true) {
+      header('location: homepage.php?bookupdate=success');
     }else{
-      header('location: homepage.php?archived=failed');
+      header('location: homepage.php?bookupdate=failed');
     }
   }
 

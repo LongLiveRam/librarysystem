@@ -27,7 +27,7 @@ class Books extends Database {
   function unlistedBooks() {
     $stmt = $this->connect()->query("SELECT * FROM books WHERE status = 'unlisted'");
     $response = $stmt->fetchAll();
-    if(!empty($response) ){
+    if(!empty($response)) {
       return $response;
     }else{
       return false;
@@ -42,7 +42,21 @@ class Books extends Database {
     }
   }
 
-  function updateBook() {
-    $stmt = $this->connect()->prepare("UPDATE books SET book_name")
+  function relistBook($ISBN) {
+    $stmt = $this->connect()->prepare("UPDATE books SET status = 'listed' WHERE ISBN = ?");
+    if($stmt->execute(array($ISBN))) {
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  function updateBook($bookName, $bookAuthor, $datePublished, $ISBN, $markerISBN) {
+    $stmt = $this->connect()->prepare("UPDATE books SET book_name = ?, author = ?, date_published = ?, ISBN = ? WHERE ISBN = ?");
+    if($stmt->execute(array($bookName, $bookAuthor, $datePublished, $ISBN, $markerISBN))) {
+      return true;
+    }else{
+      return false;
+    }
   }
 }
